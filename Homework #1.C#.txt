@@ -1,0 +1,45 @@
+using System;
+
+namespace Homework
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+               
+                Console.Write("Enter minNumber: ");
+                int minNumber = int.Parse(Console.ReadLine());
+
+                Console.Write("Enter maxNumber: ");
+                int maxNumber = int.Parse(Console.ReadLine());
+
+               
+                int[,] numberFrequency = new int[maxNumber - minNumber + 1, 2];
+
+                
+                for (int i = 0; i < numberFrequency.GetLength(0); i++)
+                {
+                    numberFrequency[i, 0] = minNumber + i;
+                    numberFrequency[i, 1] = 0;
+                }
+
+                Random random = new Random();
+                for (int i = 0; i < 1000; i++)
+                {
+                    int randomNumber = random.Next(minNumber, maxNumber + 1);
+                    int index = randomNumber - minNumber;
+                    numberFrequency[index, 1]++;
+                }
+
+                
+                Console.WriteLine("Number\tFrequency");
+                Console.WriteLine("--------------------");
+                for (int i = 0; i < numberFrequency.GetLength(0); i++)
+                {
+                    Console.WriteLine($"{numberFrequency[i, 0]}\t\t{numberFrequency[i, 1]}");
+                }
+            
+        }
+    }
+}
